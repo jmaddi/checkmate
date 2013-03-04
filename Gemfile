@@ -58,5 +58,5 @@ gem 'oauth', '0.4.4'
 gem 'oauth-plugin'
 
 gem 'devise'
-gem 'liftapp-client', git: 'git@github.com:jmaddi/liftapp-client.git'
+gem 'liftapp-client', git: 'git://github.com/jmaddi/liftapp-client.git'
 gem 'knockoutjs-rails'

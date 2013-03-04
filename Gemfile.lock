@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:jmaddi/liftapp-client.git
+  remote: git://github.com/jmaddi/liftapp-client.git
   revision: e546bb6de949dc46d8d0cf74e84646f6e951fd79
   specs:
     liftapp-client (0.0.5)
