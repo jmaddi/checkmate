@@ -1,0 +1,27 @@
+- if !user_signed_in?
+  %h3 Step 1. Log in with your <a href="http://lift.do" target="blank">Lift.do</a> account
+  =form_tag('/lift/login', method: 'post', class: 'form-inline') do
+    %input{type: 'text', placeholder: 'Email', name: 'email'}
+    %input{type: 'password', placeholder: 'Password', name: 'password'}
+    %button.btn.btn-primary Log in
+- else
+  %h3.inactive Step 1. Log in with your <a href="http://lift.do" target="blank">Lift.do</a> account
+
+- if user_signed_in? && current_user.withings.nil?
+  %h3 Step 2. Connect your <a href="http://withings.com" target="_blank">Withings</a> account
+  = link_to 'Connect Withings account', oauth_consumer_path(:withings)
+- else
+  %h3.inactive Step 2. Connect your <a href="http://withings.com" target="_blank">Withings</a> account
+
+- if user_signed_in? && !current_user.withings.nil?
+  %h3 Step 3. Link your checkins
+  %div{'data-bind' => 'if: !habits'} Loading habits...
+  %div{'data-bind' => 'visible: habits', style: 'display:none'}
+    .form-inline
+      %select{'data-bind' => 'options: habits, optionsText: "name", optionsValue: "id"'}
+      %label.checkbox
+        %input{type: 'checkbox', name: 'habits', value: '1'}
+        Include weight
+      %button.btn.btn-primary Link
+- else
+  %h3.inactive Step 3. Link your checkins

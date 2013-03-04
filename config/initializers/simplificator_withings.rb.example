@@ -1,0 +1,2 @@
+Withings.consumer_secret='youroauthkey'
+Withings.consumer_key='youroauthsecret'

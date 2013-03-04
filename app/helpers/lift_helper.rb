@@ -1,0 +1,2 @@
+module LiftHelper
+end
