@@ -17,7 +17,7 @@
   %h3 Step 3. Link your checkins
   %div{'data-bind' => 'if: !habits'} Loading habits...
   %div{'data-bind' => 'visible: habits', style: 'display:none'}
-    %form.form-inline{method: 'post', action: habit_links_path}
+    =form_tag(habit_links_path, class: 'form-inline') do
       %select{'data-bind' => 'options: habits, optionsText: "name", optionsValue: "id"', name: 'habit_id'}
       %label.checkbox
         %input{type: 'checkbox', name: 'habits', value: '1'}
