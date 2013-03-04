@@ -5,7 +5,6 @@ gem 'rails', '3.2.11'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
 
 
 # Gems used only for assets and not required
@@ -28,6 +27,11 @@ group :development, :test do
   gem 'capybara'
   gem 'factory_girl_rails'
   gem 'pry-remote'
+  gem 'sqlite3'
+end
+
+group :production do
+  gem 'pg'
 end
 
 gem 'jquery-rails'
@@ -49,7 +53,10 @@ gem 'jquery-rails'
 #gem 'twitter-bootstrap-rails'
 gem 'haml-rails'
 gem 'simplificator-withings', require: 'withings'
-gem 'oauth-plugin', path: '/Users/jrm/src/oauth-plugin'
+
+gem 'oauth', '0.4.4'
+gem 'oauth-plugin'
+
 gem 'devise'
-gem 'liftapp-client', path: '/Users/jrm/src/liftapp-client'
+gem 'liftapp-client', git: 'git@github.com:jmaddi/liftapp-client.git'
 gem 'knockoutjs-rails'

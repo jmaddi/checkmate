@@ -1,11 +1,11 @@
 require 'oauth/controllers/consumer_controller'
 class OauthConsumersController < ApplicationController
   include Oauth::Controllers::ConsumerController
-  # Replace this with the equivalent for your authentication framework
-  # Eg. for devise
-  #
+
+  # To fix error "uninitialized constant Oauth::Controllers::ConsumerController::Oauth2Token"
+  class Oauth::Controllers::ConsumerController::Oauth2Token; end
+
   before_filter :authenticate_user!, :only=>:index
-  #before_filter :login_required, :only=>:index
 
   def index
     @consumer_tokens=ConsumerToken.all :conditions=>{:user_id=>current_user.id}
