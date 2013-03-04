@@ -1,7 +1,0 @@
-OAUTH_CREDENTIALS = {
-  withings: {
-    key: 'youroauthkey',
-    secret: 'youroauthsecret',
-    expose: true
-  }
-}
