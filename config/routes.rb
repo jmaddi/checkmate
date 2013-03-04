@@ -4,7 +4,7 @@ CheckMate::Application.routes.draw do
   post "lift/login"
   get "lift/habits"
 
-  post "withings/notify"
+  get "withings/notify"
 
   devise_for :users
 
