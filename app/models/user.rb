@@ -14,7 +14,8 @@ class User < ActiveRecord::Base
   has_many :habit_links
 
   def subscribe_withings
-    user = Withings::User.authenticate(id.to_s, withings.token, withings.secret)
+    binding.remote_pry
+    user = Withings::User.authenticate(withings.withings_user_id, withings.token, withings.secret)
     notifications = user.list_notifications(Withings::SCALE)
     if notifications.length < 1
       user.subscribe_notification('http://intense-bayou-2687.herokuapp.com/withings/notify', 'http://test.com', Withings::SCALE)
