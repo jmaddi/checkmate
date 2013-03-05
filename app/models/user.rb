@@ -13,6 +13,10 @@ class User < ActiveRecord::Base
 
   has_many :habit_links
 
+  def self.subscribe_withings(id)
+    find(id).subscribe_withings
+  end
+
   def subscribe_withings
     binding.remote_pry
     user = Withings::User.authenticate(withings.withings_user_id, withings.token, withings.secret)
