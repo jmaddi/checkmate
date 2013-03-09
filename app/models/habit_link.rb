@@ -10,6 +10,13 @@ class HabitLink < ActiveRecord::Base
   belongs_to :user
 
   def self.update_github
-    
+    where(trigger: GITHUB_PUBLIC_COMMIT).each do |habit_link|
+      #client = Octokit::Client.new(oauth_token: user.github.token)
+      events = Octokit::Client.user_events('jmaddi')
+      events.select {|event| event.created_at.to_datetime > Time.new.beginning_of_day.to_datetime && event.type == 'PushEvent' }
+      user = habit_link.user
+      client = Liftapp::Client.new(user.email, user.lift_password)
+      client.checkin(1337)
+    end
   end
 end

@@ -39,10 +39,18 @@
         %button.btn.btn-primary Link
   - else
     %h3 Step 3. Link your checkins
-    When
-    %select
-      %option I weight myself
-      %option I push code to github
-    check me in to
+    When I
+    %p
+    %label.radio
+      %input{type: 'radio'}
+      Weight myself
+    %label.radio
+      %input{type: 'radio'}
+      Push to GitHub
+    %label.radio
+      %input{type: 'radio'}
+      Complete a run
+    then check me in to
+    %p
     %select
       %option Weigh myself

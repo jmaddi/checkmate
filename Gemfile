@@ -23,11 +23,14 @@ group :assets do
 end
 
 group :development, :test do
+  gem 'pry-remote'
+  gem 'sqlite3'
+end
+
+group :test do 
   gem 'rspec-rails'
   gem 'capybara'
   gem 'factory_girl_rails'
-  gem 'pry-remote'
-  gem 'sqlite3'
   gem 'webmock'
 end
 
