@@ -6,10 +6,11 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :lift_password
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :lift_password, :full_name, :picture_url
   # attr_accessible :title, :body
 
   has_one :withings, class_name: 'WithingsToken', dependent: :destroy
+  has_one :github,   class_name: 'GithubToken',   dependent: :destroy
 
   has_many :habit_links
 
@@ -18,7 +19,6 @@ class User < ActiveRecord::Base
   end
 
   def subscribe_withings
-    binding.remote_pry
     user = Withings::User.authenticate(withings.withings_user_id, withings.token, withings.secret)
     notifications = user.list_notifications(Withings::SCALE)
     if notifications.length < 1

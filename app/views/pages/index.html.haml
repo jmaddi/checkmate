@@ -1,27 +1,48 @@
-- if !user_signed_in?
-  %h3 Step 1. Log in with your <a href="http://lift.do" target="blank">Lift.do</a> account
-  =form_tag('/lift/login', method: 'post', class: 'form-inline') do
-    %input{type: 'text', placeholder: 'Email', name: 'email'}
-    %input{type: 'password', placeholder: 'Password', name: 'password'}
-    %button.btn.btn-primary Log in
-- else
-  %h3.inactive Step 1. Log in with your <a href="http://lift.do" target="blank">Lift.do</a> account
+.step 
+  - if !user_signed_in?
+    %h3 Step 1. Log in with your <a href="http://lift.do" target="blank">Lift.do</a> account
+    =form_tag('/lift/login', method: 'post', class: 'form-inline') do
+      %input{type: 'text', placeholder: 'Email', name: 'email'}
+      %input{type: 'password', placeholder: 'Password', name: 'password'}
+      %button.btn.btn-primary Log in
+  - else
+    %h3 Step 1. Log in with your <a href="http://lift.do" target="blank">Lift.do</a> account
+    %h3{style: 'font-size:30px'}
+      =image_tag current_user.picture_url
+      =current_user.full_name
 
-- if user_signed_in? && current_user.withings.nil?
-  %h3 Step 2. Connect your <a href="http://withings.com" target="_blank">Withings</a> account
-  = link_to 'Connect Withings account', oauth_consumer_path(:withings)
-- else
-  %h3.inactive Step 2. Connect your <a href="http://withings.com" target="_blank">Withings</a> account
+.step
+  - if user_signed_in? && current_user.withings.nil?
+    %h3 Step 2. Connect your accounts
+    .service{style: 'display: inline'}
+      %img{src: '/assets/withings.png', style: 'width:50px'}
+      = link_to 'Connect Withings account', oauth_consumer_path(:withings)
+    .service{style: 'display: inline'}
+      %img{src: '/assets/github.png', style: 'width:50px'}
+      = link_to 'Connect Github account', oauth_consumer_path(:github)
+    .service{style: 'display: inline'}
+      %img{src: '/assets/runkeeper.jpg', style: 'width:50px'}
+      = link_to 'Connect Runkeeper account', oauth_consumer_path(:github)
+  - else
+    %h3.inactive Step 2. Connect your accounts
 
-- if user_signed_in? && !current_user.withings.nil?
-  %h3 Step 3. Link your checkins
-  %div{'data-bind' => 'if: !habits'} Loading habits...
-  %div{'data-bind' => 'visible: habits', style: 'display:none'}
-    =form_tag(habit_links_path, class: 'form-inline') do
-      %select{'data-bind' => 'options: habits, optionsText: "name", optionsValue: "id"', name: 'habit_id'}
-      %label.checkbox
-        %input{type: 'checkbox', name: 'habits', value: '1'}
-        Include weight
-      %button.btn.btn-primary Link
-- else
-  %h3.inactive Step 3. Link your checkins
+.step
+  - if user_signed_in? && !current_user.withings.nil?
+    %h3 Step 3. Link your checkins
+    %div{'data-bind' => 'if: !habits'} Loading habits...
+    %div{'data-bind' => 'visible: habits', style: 'display:none'}
+      =form_tag(habit_links_path, class: 'form-inline') do
+        %select{'data-bind' => 'options: habits, optionsText: "name", optionsValue: "id"', name: 'habit_id'}
+        %label.checkbox
+          %input{type: 'checkbox', name: 'habits', value: '1'}
+          Include weight
+        %button.btn.btn-primary Link
+  - else
+    %h3 Step 3. Link your checkins
+    When
+    %select
+      %option I weight myself
+      %option I push code to github
+    check me in to
+    %select
+      %option Weigh myself

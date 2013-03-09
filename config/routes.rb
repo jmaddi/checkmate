@@ -8,6 +8,9 @@ CheckMate::Application.routes.draw do
 
   devise_for :users
 
+  get 'oauth_consumers/withings/callback'  => 'withings_oauth_consumer#callback',  defaults: {id: 'withings'}
+  get 'oauth_consumers/withings/callback2' => 'withings_oauth_consumer#callback2', defaults: {id: 'withings'}
+
   resources :oauth_consumers do
     member do
       get :callback

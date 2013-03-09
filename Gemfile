@@ -28,6 +28,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'pry-remote'
   gem 'sqlite3'
+  gem 'webmock'
 end
 
 group :production do
@@ -55,6 +56,7 @@ gem 'haml-rails'
 gem 'simplificator-withings', require: 'withings'
 
 gem 'oauth', '0.4.4'
+gem 'oauth2'
 gem 'oauth-plugin'
 
 gem 'devise'
@@ -62,3 +64,4 @@ gem 'liftapp-client', git: 'git://github.com/jmaddi/liftapp-client.git'
 gem 'knockoutjs-rails'
 
 gem 'delayed_job_active_record'
+gem 'octokit'

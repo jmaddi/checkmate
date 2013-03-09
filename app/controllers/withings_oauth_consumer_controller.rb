@@ -1,9 +1,9 @@
 require 'oauth/controllers/consumer_controller'
-class OauthConsumersController < ApplicationController
+class WithingsOauthConsumerController < ApplicationController
   include Oauth::Controllers::ConsumerController
 
   # To fix error "uninitialized constant Oauth::Controllers::ConsumerController::Oauth2Token"
-  #include Oauth
+  class Oauth::Controllers::ConsumerController::Oauth2Token; end
 
   before_filter :authenticate_user!, :only=>:index
 
@@ -13,7 +13,25 @@ class OauthConsumersController < ApplicationController
   end
 
   def callback
-    super
+    logger.info "CALLBACK"
+    @request_token_secret=session[params[:oauth_token]]
+    if @request_token_secret
+      @token=@consumer.find_or_create_from_request_token(current_user,params[:userid], params[:oauth_token],@request_token_secret,params[:oauth_verifier])
+      session[params[:oauth_token]] = nil
+      if @token
+        # Log user in
+        if logged_in?
+          flash[:notice] = "#{params[:id].humanize} was successfully connected to your account"
+        else
+          self.current_user = @token.user
+          flash[:notice] = "You logged in with #{params[:id].humanize}"
+        end
+        go_back
+      else
+        flash[:error] = "An error happened, please try connecting again"
+        redirect_to oauth_consumer_url(params[:id])
+      end
+    end
   end
 
   def client

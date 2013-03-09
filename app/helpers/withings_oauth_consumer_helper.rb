@@ -1,0 +1,2 @@
+module WithingsOauthConsumerHelper
+end

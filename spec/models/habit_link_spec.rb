@@ -1,5 +1,8 @@
 require 'spec_helper'
 
 describe HabitLink do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it '#update_github should update linked habits' do
+    habit_link = create(:habit_link)
+    HabitLink.update_github
+  end
 end

@@ -14,6 +14,7 @@
     %link{:href => "images/apple-touch-icon-72x72.png", :rel => "apple-touch-icon", :sizes => "72x72"}/
     %link{:href => "images/apple-touch-icon-114x114.png", :rel => "apple-touch-icon", :sizes => "114x114"}/
   %body
+    <a href="https://github.com/you"><img style="position:absolute;z-index:1050; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
     .navbar.navbar-fixed-top
       .navbar-inner
         .container
@@ -32,7 +33,7 @@
     .container
       .content
         .row
-          .span9
+          .span12
             - if flash[:notice]
               .alert.alert-success
                 %button{type: 'button', class: 'close', :'data-dismiss' => 'alert'} &times;
@@ -42,14 +43,6 @@
                 %button{type: 'button', class: 'close', :'data-dismiss' => 'alert'} &times;
                 =flash[:error]
             = yield
-          .span3
-            .well.sidebar-nav
-              %h3 Sidebar
-              %ul.nav.nav-list
-                %li.nav-header Sidebar
-                %li= link_to "Link1", "/path1"
-                %li= link_to "Link2", "/path2"
-                %li= link_to "Link3", "/path3"
             / /.well
           / /span
         / /row
