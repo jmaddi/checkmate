@@ -7,8 +7,8 @@ class LiftController < ApplicationController
       flash[:notice] = 'You have been logged in successfully.'
     rescue Liftapp::AccessDenied
       flash[:error] = 'Invalid email/password'
-    rescue
-      flash[:error] = 'Error logging in, please try again'
+    #rescue
+    #  flash[:error] = 'Error logging in, please try again'
     end
     redirect_to root_path
   end
