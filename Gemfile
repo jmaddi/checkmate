@@ -68,3 +68,4 @@ gem 'knockoutjs-rails'
 
 gem 'delayed_job_active_record'
 gem 'octokit'
+gem 'health_graph'

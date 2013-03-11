@@ -9,8 +9,9 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :lift_password, :full_name, :picture_url
   # attr_accessible :title, :body
 
-  has_one :withings, class_name: 'WithingsToken', dependent: :destroy
-  has_one :github,   class_name: 'GithubToken',   dependent: :destroy
+  has_one :withings,  class_name: 'WithingsToken', dependent: :destroy
+  has_one :github,    class_name: 'GithubToken',   dependent: :destroy
+  has_one :runkeeper, class_name: 'RunkeeperToken',   dependent: :destroy
 
   has_many :habit_links
 

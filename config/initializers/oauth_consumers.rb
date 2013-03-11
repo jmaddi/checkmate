@@ -11,5 +11,14 @@ OAUTH_CREDENTIALS = {
       authorize_url: '/login/oauth/authorize',
       token_url: '/login/oauth/access_token'
     }
+  },
+  runkeeper: {
+    key: ENV['RUNKEEPER_OAUTH_CLIENT_ID'],
+    secret: ENV['RUNKEEPER_OAUTH_SECRET'],
+    options: {
+      site: 'https://runkeeper.com',
+      authorize_url: '/apps/authorize',
+      token_url: '/apps/token'
+    }
   }
 }

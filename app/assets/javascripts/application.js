@@ -16,4 +16,6 @@
 //= require knockout.mapping
 //= require bootstrap
 //= require custom_checkbox_and_radio
+//= require select2
 //= require_tree .
+

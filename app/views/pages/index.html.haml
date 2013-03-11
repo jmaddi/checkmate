@@ -14,43 +14,37 @@
 .step
   - if user_signed_in? && current_user.withings.nil?
     %h3 Step 2. Connect your accounts
-    .service{style: 'display: inline'}
-      %img{src: '/assets/withings.png', style: 'width:50px'}
-      = link_to 'Connect Withings account', oauth_consumer_path(:withings)
-    .service{style: 'display: inline'}
-      %img{src: '/assets/github.png', style: 'width:50px'}
-      = link_to 'Connect Github account', oauth_consumer_path(:github)
-    .service{style: 'display: inline'}
-      %img{src: '/assets/runkeeper.jpg', style: 'width:50px'}
-      = link_to 'Connect Runkeeper account', oauth_consumer_path(:github)
+    -@services.each do |service|
+      .service{style: 'display: inline'}
+        %img{src: "#{service[:image]}", style: 'width:50px'}
+        -if service[:connected]
+          %strong #{service[:name]}:
+          Connected
+        -else
+          = link_to "Connect #{service[:name]} account", service[:path]
   - else
     %h3.inactive Step 2. Connect your accounts
 
 .step
-  - if user_signed_in? && !current_user.withings.nil?
-    %h3 Step 3. Link your checkins
-    %div{'data-bind' => 'if: !habits'} Loading habits...
-    %div{'data-bind' => 'visible: habits', style: 'display:none'}
-      =form_tag(habit_links_path, class: 'form-inline') do
-        %select{'data-bind' => 'options: habits, optionsText: "name", optionsValue: "id"', name: 'habit_id'}
-        %label.checkbox
-          %input{type: 'checkbox', name: 'habits', value: '1'}
-          Include weight
-        %button.btn.btn-primary Link
-  - else
+  - if user_signed_in?
     %h3 Step 3. Link your checkins
     When I
     %p
-    %label.radio
-      %input{type: 'radio'}
-      Weight myself
-    %label.radio
-      %input{type: 'radio'}
-      Push to GitHub
-    %label.radio
-      %input{type: 'radio'}
-      Complete a run
-    then check me in to
+    -@triggers.each do |trigger|
+      %label.radio
+        -if trigger[:enabled]
+          %input{name: 'trigger', type: 'radio', value: "#{trigger[:id]}"}
+        -else
+          %input{name: 'trigger', type: 'radio', value: "#{trigger[:id]}", disabled: 'disabled'}
+        #{trigger[:label]}
+    then check me in to:
     %p
-    %select
-      %option Weigh myself
+    %div{style: 'font-style:italic', 'data-bind' => 'if: !habits'} <img src="/assets/loading.gif" /> Loading habits...
+    %div{'data-bind' => 'visible: habits', style: 'display:none'}
+      =form_tag(habit_links_path, class: 'form-inline') do
+        %select#habits{'data-bind' => 'options: habits, optionsText: "name", optionsValue: "id"', name: 'habit_id'}
+        %p
+        %button.btn.btn-primary
+          %i.icon-plus.icon-white
+          Link Checkins
+
