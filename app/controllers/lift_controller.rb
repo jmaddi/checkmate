@@ -5,8 +5,10 @@ class LiftController < ApplicationController
       user = User.where(email: client.email).first_or_create(lift_password: params[:password], full_name: client.name, picture_url: client.picture_url)
       sign_in :user, user
       flash[:notice] = 'You have been logged in successfully.'
-    rescue
+    rescue Liftapp::AccessDenied
       flash[:error] = 'Invalid email/password'
+    rescue
+      flash[:error] = 'Error logging in, please try again'
     end
     redirect_to root_path
   end
