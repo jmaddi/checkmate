@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
     user = Withings::User.authenticate(withings.withings_user_id, withings.token, withings.secret)
     notifications = user.list_notifications(Withings::SCALE)
     if notifications.length < 1
-      user.subscribe_notification('http://intense-bayou-2687.herokuapp.com/withings/notify', 'http://test.com', Withings::SCALE)
+      user.subscribe_notification(withings_notify_url, root_url, Withings::SCALE)
     end
   end
 
