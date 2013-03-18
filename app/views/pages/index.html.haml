@@ -12,7 +12,7 @@
       =current_user.full_name
 
 .step
-  - if user_signed_in? && current_user.withings.nil?
+  - if user_signed_in?
     %h3 Step 2. Connect your accounts
     -@services.each do |service|
       .service{style: 'display: inline'}

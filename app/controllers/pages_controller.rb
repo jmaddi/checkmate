@@ -25,17 +25,17 @@ class PagesController < ApplicationController
         {
           label: 'Weigh myself',
           id: HabitLink::WITHINGS_SCALE,
-          enabled: !current_user.withings
+          enabled: !current_user.withings.nil?
         },
         {
           label: 'Push to a Github public repository',
           id: HabitLink::GITHUB_PUBLIC_COMMIT,
-          enabled: !current_user.github
+          enabled: !current_user.github.nil?
         },
         {
           label: 'Complete a new run',
           id: HabitLink::RUNKEEPER_RUN,
-          enabled: !current_user.runkeeper
+          enabled: !current_user.runkeeper.nil?
         }
       ]
     end
