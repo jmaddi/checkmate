@@ -14,7 +14,7 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
+  gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
 
@@ -60,7 +60,7 @@ gem 'simplificator-withings', require: 'withings'
 
 gem 'oauth', '0.4.4'
 gem 'oauth2'
-gem 'oauth-plugin', path: '/Users/jrm/src/oauth-plugin'
+gem 'oauth-plugin'
 
 gem 'devise'
 gem 'liftapp-client', git: 'git://github.com/jmaddi/liftapp-client.git'
