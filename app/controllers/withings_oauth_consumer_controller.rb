@@ -3,7 +3,7 @@ class WithingsOauthConsumerController < ApplicationController
   include Oauth::Controllers::ConsumerController
 
   # To fix error "uninitialized constant Oauth::Controllers::ConsumerController::Oauth2Token"
-  class Oauth::Controllers::ConsumerController::Oauth2Token; end
+  #class Oauth::Controllers::ConsumerController::Oauth2Token; end
 
   before_filter :authenticate_user!, :only=>:index
 

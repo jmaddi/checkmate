@@ -6,6 +6,15 @@ GIT
       httparty
       nokogiri
 
+PATH
+  remote: /Users/jrm/src/oauth-plugin
+  specs:
+    oauth-plugin (0.4.1)
+      multi_json
+      oauth (~> 0.4.4)
+      oauth2 (>= 0.5.0)
+      rack
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -128,11 +137,6 @@ GEM
     netrc (0.7.7)
     nokogiri (1.5.6)
     oauth (0.4.4)
-    oauth-plugin (0.4.1)
-      multi_json
-      oauth (~> 0.4.4)
-      oauth2 (>= 0.5.0)
-      rack
     oauth2 (0.9.1)
       faraday (~> 0.8)
       httpauth (~> 0.1)
@@ -250,7 +254,7 @@ DEPENDENCIES
   knockoutjs-rails
   liftapp-client!
   oauth (= 0.4.4)
-  oauth-plugin
+  oauth-plugin!
   oauth2
   octokit
   pg
